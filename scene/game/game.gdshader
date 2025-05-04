@@ -21,7 +21,7 @@ vec3 color(int index) {
 vec3 nearest_color(vec3 in_color) {
 	int nearest_color = 0;
 	float nearest_dist = 100.0;
-	
+
 	for (int i = 0; i < number_of_colors; i++) {
 		vec3 i_color = color(i);
 		float dist = length(in_color - i_color);
@@ -30,7 +30,7 @@ vec3 nearest_color(vec3 in_color) {
 			nearest_dist = dist;
 		}
 	}
-	
+
 	return color(nearest_color);
 }
 

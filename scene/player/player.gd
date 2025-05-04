@@ -40,15 +40,15 @@ func _ready() -> void:
 func _movement(delta: float) -> void:
 	# Handle jump and gravity.
 	if jetpack:
-		if Input.is_action_pressed(input_prefix + "jump"):
-			$JetpackParticles.emitting = true
-			$JumpAudio.playing = true
+		var jetpack_pressed = Input.is_action_pressed(input_prefix + "jump")
+		$JetpackParticles.emitting = jetpack_pressed
+		if jetpack_pressed != $JumpAudio.playing:
+			$JumpAudio.playing = jetpack_pressed
+		
+		if jetpack_pressed:
 			velocity.y = move_toward(velocity.y, -JETPACK_VELOCITY, JETPACK_VELOCITY * JETPACK_ACCELERATION)
-		else:
-			$JetpackParticles.emitting = false
-			$JumpAudio.playing = false
-			if not is_on_floor():
-				velocity.y += GRAVITY * delta
+		elif not is_on_floor():
+			velocity.y += GRAVITY * delta
 	else:
 		if not is_on_floor():
 			velocity.y += GRAVITY * delta
@@ -160,5 +160,6 @@ func _update_score() -> void:
 		$UpgradeParticles.emitting = true
 		$UpgradeAudio.play()
 		$JumpAudio.stream = preload("res://scene/player/sound/jetpack.wav")
+		$JumpAudio.volume_db = -10
 	
 	score_change.emit()
