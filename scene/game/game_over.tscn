@@ -1,0 +1,120 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3p3gbc7jysip"]
+
+[ext_resource type="Script" uid="uid://bpwbo2jflfm1r" path="res://scene/game/game_over.gd" id="1_jh6ur"]
+[ext_resource type="Texture2D" uid="uid://btjy23lvypxyx" path="res://9_patch.png" id="2_h0ncp"]
+[ext_resource type="FontFile" uid="uid://bycu2lnmj5cxo" path="res://alagard.ttf" id="3_byr6d"]
+[ext_resource type="FontFile" uid="uid://uqag5yvxuron" path="res://Paxel Rounded.ttf" id="4_rqr63"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kk4hu"]
+font = ExtResource("3_byr6d")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o6t67"]
+texture = ExtResource("2_h0ncp")
+texture_margin_left = 3.0
+texture_margin_top = 3.0
+texture_margin_right = 3.0
+texture_margin_bottom = 3.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_ghrue"]
+font = ExtResource("4_rqr63")
+font_size = 8
+
+[node name="GameOverScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jh6ur")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -61.0
+offset_top = -21.0
+offset_right = 61.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "press [r]"
+label_settings = SubResource("LabelSettings_kk4hu")
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(128, 80)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_o6t67")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "game over"
+label_settings = SubResource("LabelSettings_kk4hu")
+horizontal_alignment = 1
+
+[node name="WinnerLabels" type="Control" parent="CenterContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="Winner1" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/WinnerLabels"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_top = 16.0
+offset_right = 59.0
+offset_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+text = "winner!"
+label_settings = SubResource("LabelSettings_ghrue")
+horizontal_alignment = 1
+
+[node name="Winner2" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/WinnerLabels"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 63.0
+offset_top = 16.0
+offset_right = 122.0
+offset_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 8
+text = "winner!"
+label_settings = SubResource("LabelSettings_ghrue")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Score1" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "0
+points"
+label_settings = SubResource("LabelSettings_ghrue")
+horizontal_alignment = 1
+
+[node name="Score2" type="Label" parent="CenterContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "0
+points"
+label_settings = SubResource("LabelSettings_ghrue")
+horizontal_alignment = 1

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cecr0j736amdp"]
+
+[ext_resource type="PackedScene" uid="uid://k1br1k5xmxsx" path="res://scene/player/bullet/bullet.tscn" id="1_01dxl"]
+[ext_resource type="Script" uid="uid://v6k6kts1i8yl" path="res://scene/player/bullet/explosive_bullet.gd" id="2_cyxqw"]
+[ext_resource type="AudioStream" uid="uid://dv5gwjyrymvp7" path="res://scene/player/bullet/explosion.wav" id="3_pnyoj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqvg5"]
+size = Vector2(16, 16)
+
+[node name="ExplosiveBullet" instance=ExtResource("1_01dxl")]
+script = ExtResource("2_cyxqw")
+
+[node name="Explosion" type="Area2D" parent="." index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Explosion" index="0"]
+shape = SubResource("RectangleShape2D_iqvg5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]
+process_mode = 3
+stream = ExtResource("3_pnyoj")

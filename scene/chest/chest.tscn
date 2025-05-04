@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://cx6ycqu77r7vf"]
+
+[ext_resource type="Texture2D" uid="uid://bfpynpy6qm5hd" path="res://scene/chest/chest.png" id="1_awbdj"]
+[ext_resource type="Script" uid="uid://bf1l7c4rbduop" path="res://scene/chest/chest.gd" id="1_fygqo"]
+[ext_resource type="Texture2D" uid="uid://dcts4dc1jhr0j" path="res://scene/chest/label.png" id="3_xlwja"]
+[ext_resource type="AudioStream" uid="uid://5gllxq65qlit" path="res://scene/chest/open.wav" id="4_xlwja"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vfkl"]
+size = Vector2(8, 8)
+
+[sub_resource type="Gradient" id="Gradient_ufpdr"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gyatu"]
+gradient = SubResource("Gradient_ufpdr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pybyj"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_gyatu")
+
+[node name="Chest" type="Area2D"]
+script = ExtResource("1_fygqo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_awbdj")
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3vfkl")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -6)
+emitting = false
+amount = 1
+texture = ExtResource("3_xlwja")
+lifetime = 2.0
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_pybyj")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_xlwja")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
